@@ -2,10 +2,12 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.util.ArrayList;
 
+
+//responsible to wait for client to join the game
 public class Login extends Thread {
 
-    private ArrayList<Player> waitingPlayers;
-    private int playersCounter;
+    private ArrayList<Player> waitingPlayers; //players who waiting to join the game
+    private int playersCounter; //counter for assign names for new players
     private Dealer dealer;
     private long createdMillis;
 
@@ -22,6 +24,7 @@ public class Login extends Thread {
     public void run() {
 
         try(ServerSocket serverSocket = new ServerSocket(5000)){
+
             while (true){
                 String newPlayerName = "player " + (playersCounter);
                 playersCounter++;
@@ -54,7 +57,7 @@ public class Login extends Thread {
         }
     }
 
-    public void sendMsgToAllWaiting(String msg){
+    void sendMsgToAllWaiting(String msg){
         for(Player p: waitingPlayers){
             p.send(msg);
         }

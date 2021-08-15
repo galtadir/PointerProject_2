@@ -4,8 +4,8 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.ArrayList;
-import java.util.HashSet;
 
+//represent players in the game and responsible to communicate with client side
 public class Player extends Participant {
     private Socket socket;
     private BufferedReader input;
@@ -13,7 +13,7 @@ public class Player extends Participant {
     private Dealer dealer;
     private PlayerStatus status;
 
-    public Player(Socket socket, Dealer dealer, String name, int money) {
+    Player(Socket socket, Dealer dealer, String name, int money) {
         super(new ArrayList<>(), money, name);
         this.socket = socket;
         this.dealer = dealer;
@@ -69,15 +69,15 @@ public class Player extends Participant {
 
     }
 
-    public void send(String msg) {
+    void send(String msg) {
         output.println(msg);
     }
 
-    public void setStatus(PlayerStatus status) {
+    void setStatus(PlayerStatus status) {
         this.status = status;
     }
 
-    public PlayerStatus getStatus() {
+    PlayerStatus getStatus() {
         return status;
     }
 }

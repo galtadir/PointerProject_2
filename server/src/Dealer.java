@@ -2,6 +2,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.*;
 
+//represent the dealer in the game
 public class Dealer extends Participant{
 
     private ArrayList<Player> activePlayers;
@@ -59,7 +60,7 @@ public class Dealer extends Participant{
 
     }
 
-
+    //init params
     private HashMap<Character,Integer> getParams(String[] args){
         HashMap<Character,Integer> params = new HashMap<>();
         params.put('n',10);
@@ -177,7 +178,7 @@ public class Dealer extends Participant{
         status = GameStatus.InAuction;
     }
 
-    public void transferPlayers(){
+    void transferPlayers(){
         ArrayList<Player> waitingPlayers = login.getWaitingPlayers();
         if(waitingPlayers.size()>0){
             for(Player player: waitingPlayers){
@@ -237,11 +238,11 @@ public class Dealer extends Participant{
     }
 
 
-    public GameStatus getStatus() {
+    GameStatus getStatus() {
         return status;
     }
 
-    public Item getCurrentItem() {
+    Item getCurrentItem() {
         return currentItem;
     }
 
@@ -283,11 +284,11 @@ public class Dealer extends Participant{
         auctionEndTime = System.currentTimeMillis()+ 10000;
     }
 
-    public int getAccumulateValues() {
+    int getAccumulateValues() {
         return accumulateValues;
     }
 
-    public int getHowManyItems() {
+    int getHowManyItems() {
         return howManyItems;
     }
 
@@ -301,7 +302,7 @@ public class Dealer extends Participant{
         this.setItems(items);
     }
 
-    public int getRound() {
+    int getRound() {
         return round;
     }
 

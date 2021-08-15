@@ -1,63 +1,63 @@
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 
-public abstract class Participant extends Thread {
+//abstract class for present all participant in the game
+abstract class Participant extends Thread {
 
     private ArrayList<Item> items;
-    private int money;
+    private int money; //money in cash
     private String name;
-    private HashMap<Integer,Integer> historyAsset;
+    private HashMap<Integer,Integer> historyAsset; //save total values from prev rounds
 
-    public Participant(ArrayList<Item> items, int money, String name) {
+    Participant(ArrayList<Item> items, int money, String name) {
         this.items = items;
         this.money = money;
         this.name = name;
         this.historyAsset = new HashMap<>();
     }
 
-    public ArrayList<Item> getItems() {
+    ArrayList<Item> getItems() {
         return items;
     }
 
-    public void setItems(ArrayList<Item> items) {
+    void setItems(ArrayList<Item> items) {
         this.items = items;
     }
 
-    public int getMoney() {
+    int getMoney() {
         return money;
     }
 
-    public void setMoney(int money) {
+    void setMoney(int money) {
         this.money = money;
     }
 
-    public void decreaseMoney(int amount){
+    void decreaseMoney(int amount){
         money-=amount;
     }
 
-    public void increaseMoney(int amount){
+    void increaseMoney(int amount){
         money+=amount;
     }
 
-    public void addItem(Item item){
+    void addItem(Item item){
         items.add(item);
     }
 
-    public void removeItem(Item item){
+    void removeItem(Item item){
         items.remove(item);
     }
 
-    public String getNameString() {
+    String getNameString() {
         return name;
     }
-    public void endRound(int round){
+    void endRound(int round){
         historyAsset.put(round,getTotalValuesCurrentRound());
         items = new ArrayList<>();
         money = 0;
     }
 
-    public int getAssetsValue(){
+    int getAssetsValue(){
         int assetsValue = 0;
         for(Item item:items){
             assetsValue+=item.getValue();
@@ -65,11 +65,11 @@ public abstract class Participant extends Thread {
         return assetsValue;
     }
 
-    public int getTotalValuesCurrentRound(){
+    int getTotalValuesCurrentRound(){
         return money+getAssetsValue();
     }
 
-    public int getTotalValuesAllRounds(){
+    int getTotalValuesAllRounds(){
         int value = 0;
         for(Integer round:historyAsset.keySet()){
             value+=historyAsset.get(round);
